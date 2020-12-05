@@ -27,7 +27,7 @@ kotlin {
         }
         withJava()
     }
-    js(IR) {
+    js {
         browser {
             binaries.executable()
             webpackTask {
@@ -45,7 +45,11 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.1")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -57,6 +61,7 @@ kotlin {
                 implementation("io.ktor:ktor-server-netty:1.4.0")
                 implementation("io.ktor:ktor-html-builder:1.4.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
             }
         }
         val jvmTest by getting {
@@ -72,8 +77,7 @@ kotlin {
                 implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.113-kotlin-1.4.0")
                 implementation("org.jetbrains:kotlin-styled:1.0.0-pre.113-kotlin-1.4.0")
                 implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.113-kotlin-1.4.0")
-                implementation("org.jetbrains:kotlin-redux:4.0.0-pre.113-kotlin-1.4.0")
-                implementation("org.jetbrains:kotlin-react-redux:5.0.7-pre.113-kotlin-1.4.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
             }
         }
         val jsTest by getting {
